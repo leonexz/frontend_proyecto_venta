@@ -1,0 +1,16 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <h2 class="text-center">Iniciar Sesión</h2>
+      <form (ngSubmit)="onLogin()">
+        <div class="mb-3">
+          <input type="text" class="form-control" [(ngModel)]="username" name="username" placeholder="Usuario" required>
+        </div>
+        <div class="mb-3">
+          <input type="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Contraseña" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+      </form>
+    </div>
+  </div>
+</div>

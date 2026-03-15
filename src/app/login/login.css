@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/plaza-de-armas-de-chancay.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.col-md-4 {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top:120px;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
