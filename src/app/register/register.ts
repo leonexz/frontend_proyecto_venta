@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-register',
   imports: [FormsModule, CommonModule, RouterModule],
@@ -19,7 +19,7 @@ username = '';
   constructor(private http: HttpClient, private router: Router) {}
 
   onRegister() {
-    this.http.post('http://localhost:3000/api/register', { username: this.username, email: this.email, password: this.password })
+    this.http.post(`${environment.apiUrl}/api/register`, { username: this.username, email: this.email, password: this.password })
       .subscribe({
         next: (res: any) => {
           alert('Usuario registrado. Ahora inicia sesión.');

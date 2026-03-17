@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-admin',
@@ -32,7 +33,7 @@ export class Admin implements OnInit {
   loadUsers() {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    this.http.get('http://localhost:3000/api/users', { headers }).subscribe((res: any) => {
+    this.http.get(`${environment.apiUrl}/users`, { headers }).subscribe((res: any) => {
       this.users = res;
       this.users.forEach(user => this.loadUserGroups(user.id));
     });
@@ -41,14 +42,14 @@ export class Admin implements OnInit {
   loadGroups() {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    this.http.get('http://localhost:3000/api/all-groups', { headers }).subscribe((res: any) => {
+    this.http.get(`${environment.apiUrl}/all-groups`, { headers }).subscribe((res: any) => {
       this.allGroups = res;
     });
   }
   loadUserGroups(userId: number) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    this.http.get(`http://localhost:3000/api/users/${userId}/groups`, { headers }).subscribe((res: any) => {
+    this.http.get(`${environment.apiUrl}/users/${userId}/groups`, { headers }).subscribe((res: any) => {
       this.userGroups[userId] = res;
     });
   }
@@ -61,7 +62,7 @@ export class Admin implements OnInit {
     const groupId = event.target.value;
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    this.http.put(`http://localhost:3000/api/users/${userId}/group`, { groupId }, { headers }).subscribe({
+    this.http.put(`${environment.apiUrl}/users/${userId}/group`, { groupId }, { headers }).subscribe({
       next: () => {
         alert('Grupo asignado');
         this.loadUsers();
@@ -77,7 +78,7 @@ export class Admin implements OnInit {
   revokeGroup(userId: number, groupId: number) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    this.http.delete(`http://localhost:3000/api/users/${userId}/group/${groupId}`, { headers }).subscribe(() => {
+    this.http.delete(`${environment.apiUrl}/users/${userId}/group/${groupId}`, { headers }).subscribe(() => {
       alert('Grupo revocado');
       this.loadUserGroups(userId);
     });
@@ -92,7 +93,7 @@ export class Admin implements OnInit {
     if (newPassword) {
       const token = localStorage.getItem('token');
       const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-      this.http.put(`http://localhost:3000/api/users/${userId}/password`, { newPassword }, { headers }).subscribe(() => {
+      this.http.put(`${environment.apiUrl}/users/${userId}/password`, { newPassword }, { headers }).subscribe(() => {
         alert('Contraseña cambiada');
       });
     }
@@ -101,7 +102,7 @@ export class Admin implements OnInit {
   deleteUser(userId: number) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    this.http.delete(`http://localhost:3000/api/users/${userId}`, { headers }).subscribe(() => {
+    this.http.delete(`${environment.apiUrl}/users/${userId}`, { headers }).subscribe(() => {
       alert('Usuario eliminado');
       this.loadUsers();
     });

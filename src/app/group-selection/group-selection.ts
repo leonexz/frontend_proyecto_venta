@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-group-selection',
   standalone: true,
@@ -26,7 +26,7 @@ export class GroupSelection {
     // Consigo el token y pido al backend los grupos
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    this.http.get('http://localhost:3000/api/groups', { headers }).subscribe((res: any) => {
+    this.http.get(`${environment.apiUrl}/api/groups`, { headers }).subscribe((res: any) => {
       this.groups = res;  // Guardamos los grupos devueltos por backend
 
       // Si hay grupos, preselecciono el primero para evitar valor vacío

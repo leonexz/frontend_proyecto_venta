@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -19,7 +19,7 @@ export class Login {
 
   onLogin() {
     // Envía usuario y contraseña al backend para autenticar
-    this.http.post('http://localhost:3000/api/login', { username: this.username, password: this.password })
+    this.http.post(`${environment.apiUrl}/api/login`, { username: this.username, password: this.password })
       .subscribe({
         next: (res: any) => {
           // Si login es correcto, guardamos token y rol en localStorage
