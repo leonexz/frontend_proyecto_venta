@@ -15,6 +15,30 @@ Aplicacion Angular para registro/login, seleccion de grupos, modulo de administr
 - npm 9 o superior
 - Backend corriendo en http://localhost:3000
 
+## Adaptacion para Docker en Linux
+
+Se crearon los archivos docker-compose.yaml, Dockerfile y nginx.conf en la parte frontend para adaptar su ejecucion en un entorno Linux con Docker instalado.
+
+Estos archivos permiten construir y levantar la aplicacion frontend dentro de contenedores, usando Nginx para servir el build generado de Angular.
+
+Aunque en este repositorio se encuentren dentro de la carpeta archivos adicionales/frontend_dockerizado, al momento de ejecutar Docker los tres archivos deben estar adyacentes al directorio frontend_proyecto_venta-main.
+
+Estructura esperada:
+
+```text
+frontend_asociacion/
+|-- frontend_proyecto_venta-main/
+|-- docker-compose.yaml
+|-- Dockerfile
+`-- nginx.conf
+```
+
+Para su levantamiento se ejecuto el siguiente comando:
+
+```bash
+docker-compose up --build -d
+```
+
 ## Instalacion y ejecucion
 
 ```bash
